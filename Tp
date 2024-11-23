@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// دالة لقراءة سلسلة أحرف من المستخدم
+char *ChargerChaine(int N) {
+    char *chaine = (char *)malloc(N + 1); // نخصص مساحة للذاكرة للسلسلة
+    if (chaine == NULL) {
+        printf("خطأ في تخصيص الذاكرة\n");
+        exit(1);
+    }
+    fgets(chaine, N + 1, stdin);
+    chaine[strcspn(chaine, "\n")] = '\0'; // حذف حرف النهاية إذا كان \n
+    return chaine;
+}
+// دالة لحساب طول السلسلة
+int Longueur(char *ch) {
+    return strlen(ch);
+}
+// إجراء لنسخ السلسلة إلى مصفوفة
+void ChargerTab(char *p, char Tab[]) {
+    strcpy(Tab, p);
+}
+// إجراء لعكس المصفوفة
+void InverserTab(char Tab[], char T[], int m) {
+    for (int i = 0; i < m; i++) {
+        T[i] = Tab[m - i - 1];
+    }
+}
+// إجراء لطباعة المصفوفة
+void AfficherTab(char Tab[], int m) {
+    for (int i = 0; i < m; i++) {
+        printf("%c", Tab[i]);
+    }
+    printf("\n");
+}
+int main() {
+    int N;
+    printf("ادخل طول السلسلة: ");
+    scanf("%d", &N);
+    char *chaine = ChargerChaine(N);
+    int longueur = Longueur(chaine);
+    char Tab[longueur];
+    ChargerTab(chaine, Tab);
+    char T[longueur];
+    InverserTab(Tab, T, longueur);
+    printf("السلسلة الأصلية: ");
+    AfficherTab(Tab, longueur);
+    printf("السلسلة المعكوسة: ");
+    AfficherTab(T, longueur);
+    free(chaine); // تحرير الذاكرة المخصصة للسلسلة
+    return 0;
+}
