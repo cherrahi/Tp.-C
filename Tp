@@ -4,7 +4,7 @@
 char *ChargerChaine(int N) {
     char *chaine = (char *)malloc(N + 1); 
     if (chaine == NULL) {
-        printf("خطأ في تخصيص الذاكرة\n");
+        printf("erreur d'allocation de mémoire \n");
        return 1;
     }
     fgets(chaine, N + 1, stdin);
@@ -30,7 +30,7 @@ void AfficherTab(char Tab[], int m) {
 }
 int main() {
     int N;
-    printf("ادخل طول السلسلة: ");
+    printf("entrez la longueur de la chaine: ");
     scanf("%d", &N);
     char *chaine = ChargerChaine(N);
     int longueur = Longueur(chaine);
@@ -38,9 +38,9 @@ int main() {
     ChargerTab(chaine, Tab);
     char T[longueur];
     InverserTab(Tab, T, longueur);
-    printf("السلسلة الأصلية: ");
+    printf("la fonction originale: ");
     AfficherTab(Tab, longueur);
-    printf("السلسلة المعكوسة: ");
+    printf("serie inversee: ");
     AfficherTab(T, longueur);
     free(chaine);
     return 0;
