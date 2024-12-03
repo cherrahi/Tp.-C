@@ -1,25 +1,38 @@
 #include <stdio.h>
+#define N 4  // حجم المصفوفة
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 int main() {
-    int ,i,j, temp;
-    int matrix[4][4]={{'1','2','3','4'}, 
-                      {'5','6','7','8'}, 
-                      {'9','10','11','12'}, 
-                      {'13','14','15','16'}}; 
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 4; j++) {
-            scanf("%d",&matrix[i][j]);
-   }}
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 4; j++) {
-            temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
- }} 
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 4; j++) {
+    int matrix[N][N] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    // طباعة المصفوفة قبل التبديل
+    printf("المصفوفة قبل التبديل:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
             printf("%d ", matrix[i][j]);
         }
         printf("\n");
-}
+    }
+    // تبديل العناصر في المثلث العلوي مع السفلي
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < i; j++) {
+            swap(&matrix[i][j], &matrix[j][i]);
+        }
+    }
+    // طباعة المصفوفة بعد التبديل
+    printf("\nالمصفوفة بعد التبديل:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
     return 0;
 }
