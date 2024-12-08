@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//une fonction pour lire une chaine de l'utilisateur et lui allouer de la memoire; 
+//une fonction pour lire une chaine de l'utilisateur et lui allouer de la memoire 
 char *ChargerChaine(int N) {
     char *chaine = (char*)malloc(sizeof(N+1));
     if (chaine == NULL) {
@@ -18,7 +18,7 @@ char *ChargerChaine(int N) {
 
     return chaine;
 }
-//calculer la longueur d'une chaine; 
+//calculer la longueur d'une chaine 
 int Longueur(char *ch) {
     int len = 0;
     while (ch[len] != '\0') {
@@ -26,7 +26,7 @@ int Longueur(char *ch) {
     }
     return len;
 }
-//une fonction pour copier le tableau de chaines; 
+//une fonction pour copier le tableau de chaines 
 void ChargerTab(char *p, char Tab[]) {
     int i = 0;
     while (p[i] != '\0') {
@@ -35,7 +35,7 @@ void ChargerTab(char *p, char Tab[]) {
     }
     Tab[i] = '\0';
 }
-//une fonction pour inverser la chaine; 
+//une fonction pour inverser la chaine 
 void InverserTab(char Tab[], int n) {
     char temp;
     for (int i = 0; i < n / 2; i++) {
@@ -44,7 +44,7 @@ void InverserTab(char Tab[], int n) {
         Tab[n - i - 1] = temp;
     }
 }
-//une fonction pour imprimer la chaine; 
+//une fonction pour imprimer la chaine 
 void AfficherTab(char Tab[], int n) {
     for (int i = 0; i < n; i++) {
         printf("%c", Tab[i]);
