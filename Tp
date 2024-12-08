@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> 
+
 char *ChargerChaine(int N) {
-    char *chaine = (char*)malloc(sizeof(N+1));
+    char *chaine = (char*)malloc(N+1);
     if (chaine == NULL) {
         printf("Memory allocation error\n");
         return(1);
     }
     printf("Enter the series: ");
     fgets(chaine, N, stdin);
+
     int i = 0;
     while (chaine[i] != '\0' && chaine[i] != '\n') {
         i++;
     }
     chaine[i] = '\0';
+
     return chaine;
 }
+
 int Longueur(char *ch) {
     int len = 0;
     while (ch[len] != '\0') {
@@ -23,6 +26,7 @@ int Longueur(char *ch) {
     }
     return len;
 }
+
 void ChargerTab(char *p, char Tab[]) {
     int i = 0;
     while (p[i] != '\0') {
@@ -31,6 +35,7 @@ void ChargerTab(char *p, char Tab[]) {
     }
     Tab[i] = '\0';
 }
+
 void InverserTab(char Tab[], int n) {
     char temp;
     for (int i = 0; i < n / 2; i++) {
@@ -39,29 +44,27 @@ void InverserTab(char Tab[], int n) {
         Tab[n - i - 1] = temp;
     }
 }
+
 void AfficherTab(char Tab[], int n) {
     for (int i = 0; i < n; i++) {
         printf("%c", Tab[i]);
     }
     printf("\n");
 }
+
 int main() {
     int N;
     printf("Enter the maximum length of the string.: ");
     scanf("%d", &N);
     char *chaine = ChargerChaine(N);
     int longueur = Longueur(chaine);
-
     char Tab[longueur];
     ChargerTab(chaine, Tab);
-
     printf("Original series: ");
     AfficherTab(Tab, longueur);
-
     InverserTab(Tab, longueur);
     printf("Inverse series: ");
     AfficherTab(Tab, longueur);
-
     free(chaine);
     return 0;
 }
