@@ -1,24 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-//une fonction pour lire une chaine de l'utilisateur et lui allouer de la memoire 
+
+// وظيفة لتحميل السلسلة من المستخدم وتخصيص الذاكرة لها
 char *ChargerChaine(int N) {
-    char *chaine = (char*)malloc(sizeof(N+1));
+    char *chaine = (char*)malloc(sizeof(char) * (N + 1));  // تخصيص الذاكرة بشكل صحيح
     if (chaine == NULL) {
         printf("Memory allocation error\n");
-        return(1);
+        return NULL;  // إرجاع NULL بدلاً من 1 عند حدوث خطأ
     }
     printf("Enter the series: ");
-    fgets(chaine, N, stdin);
-
-    int i = 0;
-    while (chaine[i] != '\0' && chaine[i] != '\n') {
-        i++;
-    }
-    chaine[i] = '\0';
+    scanf("%s", chaine);  // قراءة السلسلة باستخدام scanf
 
     return chaine;
 }
-//calculer la longueur d'une chaine 
+
+// حساب طول السلسلة
 int Longueur(char *ch) {
     int len = 0;
     while (ch[len] != '\0') {
@@ -26,8 +22,9 @@ int Longueur(char *ch) {
     }
     return len;
 }
-//une fonction pour copier le tableau de chaines 
-void ChargerTab(char *p, char Tab[]) {
+
+// وظيفة لنسخ السلسلة إلى مصفوفة
+void ChargerTab(char *p, char *Tab) {
     int i = 0;
     while (p[i] != '\0') {
         Tab[i] = p[i];
@@ -35,8 +32,9 @@ void ChargerTab(char *p, char Tab[]) {
     }
     Tab[i] = '\0';
 }
-//une fonction pour inverser la chaine 
-void InverserTab(char Tab[], int n) {
+
+// وظيفة لعكس السلسلة
+void InverserTab(char *Tab, int n) {
     char temp;
     for (int i = 0; i < n / 2; i++) {
         temp = Tab[i];
@@ -44,8 +42,9 @@ void InverserTab(char Tab[], int n) {
         Tab[n - i - 1] = temp;
     }
 }
-//une fonction pour imprimer la chaine 
-void AfficherTab(char Tab[], int n) {
+
+// وظيفة لعرض السلسلة
+void AfficherTab(char *Tab, int n) {
     for (int i = 0; i < n; i++) {
         printf("%c", Tab[i]);
     }
@@ -54,17 +53,36 @@ void AfficherTab(char Tab[], int n) {
 
 int main() {
     int N;
-    printf("Enter the maximum length of the string.: ");
-    scanf("%d", &N);
+    printf("Enter the maximum length of the string: ");
+    scanf("%d", &N);  // قراءة طول السلسلة
+    getchar();  // قراءة \n المتبقية بعد استخدام scanf
+
+    // تحميل السلسلة من المستخدم
     char *chaine = ChargerChaine(N);
+    if (chaine == NULL) {
+        return 1;  // في حالة حدوث خطأ في تخصيص الذاكرة
+    }
+
     int longueur = Longueur(chaine);
-    char Tab[longueur];
+    char *Tab = (char*)malloc(sizeof(char) * (longueur + 1));  // تخصيص الذاكرة للمصفوفة Tab
+    if (Tab == NULL) {
+        printf("Memory allocation error for Tab\n");
+        free(chaine);
+        return 1;
+    }
+
+    // نسخ السلسلة إلى المصفوفة
     ChargerTab(chaine, Tab);
     printf("Original series: ");
     AfficherTab(Tab, longueur);
+
+    // عكس السلسلة
     InverserTab(Tab, longueur);
     printf("Inverse series: ");
     AfficherTab(Tab, longueur);
+
+    // تحرير الذاكرة
     free(chaine);
+    free(Tab);
     return 0;
 }
