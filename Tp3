@@ -20,11 +20,7 @@ Element* ajouterEnDebut(Element *liste, int valeur) {
     nouveau->suivant = liste;
     return nouveau;
 }
-
-// دالة لإضافة عنصر في نهاية القائمة
-Element* ajouterEnFin(Element *liste, int valeur) {
-    Element *nouveau = (Element*)malloc(sizeof(Element));
-    nouveau->valeur = valeur;
+valeu = valeur;
     nouveau->suivant = NULL;
 
     if (liste == NULL) {
