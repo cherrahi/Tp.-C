@@ -20,20 +20,6 @@ Element* ajouterEnDebut(Element *liste, int valeur) {
     nouveau->suivant = liste;
     return nouveau;
 }
-valeu = valeur;
-    nouveau->suivant = NULL;
-
-    if (liste == NULL) {
-        return nouveau;
-    }
-
-    Element *tmp = liste;
-    while (tmp->suivant != NULL) {
-        tmp = tmp->suivant;
-    }
-    tmp->suivant = nouveau;
-    return liste;
-}
 
 // دالة لملء قائمة من مصفوفة (إضافة في البداية)
 Element* chargerListe(int Tab[], int n, Element *liste) {
